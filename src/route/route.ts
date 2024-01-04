@@ -40,9 +40,15 @@ export class Route {
   }
 
   static view(
-    path: string,
-    view: string,
-    additionalViews?: string
+    {
+      path,
+      view,
+      additionalViews
+    }: {
+      path: string,
+      view: string,
+      additionalViews?: string
+    }
   ): Route {
     return new this(path, view, additionalViews);
   }
