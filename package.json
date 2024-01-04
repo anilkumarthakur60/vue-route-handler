@@ -1,7 +1,7 @@
 {
   "name": "vue-route-handler",
   "description": "Elegant, fluent route definitions for Vue Router, inspired by Laravel.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "@anilkumarthakur60",
   "license": "ISC",
   "homepage": "https://github.com/anilkumarthakur60/vue-routes",
