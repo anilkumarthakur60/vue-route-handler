@@ -5,9 +5,6 @@ inspiration from the structure of Laravel routes.
 Elegant, fluent route definitions for [Vue Router](https://router.vuejs.org/), inspired
 by [Laravel](https://laravel.com).</p>
 
-**Important: vue-route-handler version 1 is now available!**
-
-This release represents a complete rewrite of the library and introduces full TypeScript support.
 
 **To install the latest version, run the following command:**
 
