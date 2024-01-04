@@ -4,10 +4,10 @@
   "version": "1",
   "author": "@anilkumarthakur60",
   "license": "ISC",
-  "homepage": "https://vue-routisan.rockett.pw",
-  "bugs": "https://github.com/mikerockett/vue-routisan/issues",
-  "source": "src/main.js",
-  "main": "dist/vue-routisan.js",
+  "homepage": "https://github.com/anilkumarthakur60/vue-routes",
+  "bugs": "https://github.com/anilkumarthakur60/vue-routes/issues",
+  "source": "src/main.ts",
+  "main": "dist/vue-routes.js",
   "types": "types/main.d.ts",
   "keywords": [
     "vue",
@@ -20,15 +20,15 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mikerockett/vue-routisan.git"
+    "url": "https://github.com/anilkumarthakur60/vue-routes"
   },
   "mangle": {
     "regex": "^_"
   },
   "scripts": {
     "clean": "rimraf dist/*",
-    "bundle": "esbuild src/main.js --platform=node --bundle --format=esm --minify --outfile=dist/vue-routisan.js",
-    "watch": "yarn clean && esbuild src/main.js --platform=node --bundle --format=esm --sourcemap --watch --outfile=dist/vue-routisan.js",
+    "bundle": "esbuild src/main.js --platform=node --bundle --format=esm --minify --outfile=dist/vue-routes.js",
+    "watch": "yarn clean && esbuild src/main.js --platform=node --bundle --format=esm --sourcemap --watch --outfile=dist/vue-routes.js",
     "build": "yarn clean && yarn generateTypes && yarn bundle",
     "prepublishOnly": "yarn build",
     "generateTypes": "yarn  tsc src/main.ts --declaration --allowJs --emitDeclarationOnly --outDir types"
