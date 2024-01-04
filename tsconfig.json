@@ -1,0 +1,35 @@
+{
+   
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "ES2019",
+    "module": "commonjs",
+    "allowJs": true,
+    "checkJs": false,
+    "outDir": "dist",
+    "rootDir": "./",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": false,
+    "skipLibCheck": true,
+    "paths": {
+      "@/*": ["src/*"]
+    },
+
+   
+     // Generate d.ts files
+     "declaration": true,
+     // This compiler run should
+     // only output d.ts files
+     "emitDeclarationOnly": true,
+    
+     // next to the .js files
+     // go to js file when using IDE functions like
+     // "Go to Definition" in VSCode
+     "declarationMap": true
+  },
+  "exclude": ["node_modules", "dist", "demo"],
+  "include": ["src/**/*"]
+}
+
+

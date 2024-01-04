@@ -1,0 +1,9 @@
+/.github
+/.vscode
+/demo
+.editorconfig
+.gitignore
+changelog.md
+license.md
+readme.md
+upgrading.md

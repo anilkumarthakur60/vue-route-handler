@@ -1,0 +1,42 @@
+{
+  "name": "vue-routes",
+  "description": "Elegant, fluent route definitions for Vue Router, inspired by Laravel.",
+  "version": "1",
+  "author": "@anilkumarthakur60",
+  "license": "ISC",
+  "homepage": "https://vue-routisan.rockett.pw",
+  "bugs": "https://github.com/mikerockett/vue-routisan/issues",
+  "source": "src/main.js",
+  "main": "dist/vue-routisan.js",
+  "types": "types/main.d.ts",
+  "keywords": [
+    "vue",
+    "vuejs",
+    "vue-router",
+    "laravel",
+    "guard",
+    "middleware",
+    "artisan"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mikerockett/vue-routisan.git"
+  },
+  "mangle": {
+    "regex": "^_"
+  },
+  "scripts": {
+    "clean": "rimraf dist/*",
+    "bundle": "esbuild src/main.js --platform=node --bundle --format=esm --minify --outfile=dist/vue-routisan.js",
+    "watch": "yarn clean && esbuild src/main.js --platform=node --bundle --format=esm --sourcemap --watch --outfile=dist/vue-routisan.js",
+    "build": "yarn clean && yarn generateTypes && yarn bundle",
+    "prepublishOnly": "yarn build",
+    "generateTypes": "yarn  tsc src/main.ts --declaration --allowJs --emitDeclarationOnly --outDir types"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.6",
+    "esbuild": "^0.19.11",
+    "rimraf": "^5.0.5",
+    "typescript": "^5.3.3"
+  }
+}
