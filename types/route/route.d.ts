@@ -19,7 +19,11 @@ export declare class Route {
     _meta: RouteMeta;
     _props: RouteProps;
     constructor(path: string, view?: string, additionalViews?: string, redirectTo?: string);
-    static view(path: string, view: string, additionalViews?: string): Route;
+    static view({ path, view, additionalViews }: {
+        path: string;
+        view: string;
+        additionalViews?: string;
+    }): Route;
     static redirect(source: string, destination: string): Route;
     static dump(): void;
     static group(options: any, callable: () => void): void;
