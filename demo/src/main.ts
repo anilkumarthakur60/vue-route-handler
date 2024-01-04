@@ -1,8 +1,8 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 import "./main.css";
-// import router from "./route";
-import router from "./route-second-example";
+import router from "./route";
+// import router from "./route-second-example"; //user any style you like
 
 
 
