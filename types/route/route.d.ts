@@ -1,5 +1,6 @@
 import { Compiler } from "./compiler";
 import { Guard } from "./guard";
+import type { Component } from 'vue';
 export interface RouteMeta {
     [key: string]: any;
 }
@@ -18,10 +19,10 @@ export declare class Route {
     _alias?: string;
     _meta: RouteMeta;
     _props: RouteProps;
-    constructor(path: string, view?: string, additionalViews?: string, redirectTo?: string);
+    constructor(path: string, view?: string | Component, additionalViews?: string, redirectTo?: string);
     static view({ path, view, additionalViews }: {
         path: string;
-        view: string;
+        view: string | Component;
         additionalViews?: string;
     }): Route;
     static redirect(source: string, destination: string): Route;

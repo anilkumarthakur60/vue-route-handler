@@ -1,7 +1,8 @@
-import {trim} from "../utils/common";
-import {Factory} from "./factory";
-import {Compiler} from "./compiler";
-import {Guard} from "./guard";
+import { trim } from "../utils/common";
+import { Factory } from "./factory";
+import { Compiler } from "./compiler";
+import { Guard } from "./guard";
+import type { Component } from 'vue'
 
 
 export interface RouteMeta {
@@ -27,7 +28,7 @@ export class Route {
 
   constructor(
     path: string,
-    view?: string,
+    view?: string | Component,
     additionalViews?: string,
     redirectTo?: string
   ) {
@@ -46,7 +47,7 @@ export class Route {
       additionalViews
     }: {
       path: string,
-      view: string,
+      view: string | Component,
       additionalViews?: string
     }
   ): Route {

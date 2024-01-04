@@ -34,9 +34,11 @@
     "generateTypes": "yarn  tsc src/main.ts --declaration --allowJs --emitDeclarationOnly --outDir types"
   },
   "devDependencies": {
+    "@babel/types": "^7.23.6",
     "@types/node": "^20.10.6",
     "esbuild": "^0.19.11",
     "rimraf": "^5.0.5",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "vue": "^3.4.5"
   }
 }
