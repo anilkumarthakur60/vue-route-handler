@@ -1,3 +1,3 @@
 interface ImportMeta {
-    globEager: (path: string) => Record<string, any>;
+  glob: (path: string) => Record<string, any>;
 }

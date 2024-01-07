@@ -30,7 +30,7 @@ Factory.withGuards({
 })
 
 
-const views = import.meta.glob("./views/**/*.vue");
+const views = import.meta.glob("./views/**/*.vue") as Views;
 const view = (path: string) => views[`./views/${path}.vue`];
 
 Factory.usingResolver(view).withGuards({ AuthGuard });
