@@ -4,11 +4,11 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite serve",
-    "lp": "npm link ../"
+    "serve": "vite serve"
   },
   "dependencies": {
     "vue": "^3.4.5",
+    "vue-route-handler": "^1.0.3",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
