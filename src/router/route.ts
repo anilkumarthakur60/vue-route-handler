@@ -7,7 +7,6 @@ const routes = [
     name: 'home',
     component: HomePage
   }
-
 ] as RouteRecordRaw[]
 
 const router = createRouter({
@@ -16,4 +15,3 @@ const router = createRouter({
 })
 
 export default router
-

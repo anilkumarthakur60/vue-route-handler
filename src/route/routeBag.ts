@@ -1,10 +1,9 @@
 interface Route {
-  compile: () => any;
+  compile: () => any
 }
 
 export class RouteBag {
-
-  public routes: Route[];
+  public routes: Route[]
 
   constructor() {
     this.routes = []
@@ -15,6 +14,6 @@ export class RouteBag {
   }
 
   compiled() {
-    return this.routes.map((route) => route.compile())
+    return this.routes.map(route => route.compile())
   }
 }
