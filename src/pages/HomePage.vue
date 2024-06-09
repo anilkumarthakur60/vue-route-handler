@@ -19,7 +19,7 @@
             <p>Explore {{ item.label }}</p>
           </div>
         </RouterLink>
-      </div>
+    </div>
     </section>
   </div>
 </template>
