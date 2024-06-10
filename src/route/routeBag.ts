@@ -1,4 +1,4 @@
-import { Route } from "./route"
+import { Route } from './route'
 
 export class RouteBag {
   public routes: Route[]
