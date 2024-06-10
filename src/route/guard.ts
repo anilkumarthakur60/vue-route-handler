@@ -1,4 +1,4 @@
-import { RouteType } from '../types/main';
+import { GuardContext, RouteType } from '../types/main';
 
 export class Guard {
   static guards: Map<string, Guard> = new Map();
@@ -17,7 +17,7 @@ export class Guard {
     return this.name;
   }
 
-  promise(context: any): Promise<void> {
+  promise(context: GuardContext): Promise<void> {
     return new Promise((resolve, reject) => {
       this.handle(resolve, reject, context);
     });
@@ -35,7 +35,8 @@ export class Guard {
     }
   }
 
-  handle(resolve: () => void, reject: (reason?: any) => void, context: any): void {
+  handle(resolve: (value?: void | PromiseLike<void>) => void, reject: (reason?: any) => void, context: GuardContext): void {
+    // Default handle implementation (can be overridden)
     try {
       if (context.isValid) {
         this.logResolution(context.route);
@@ -50,4 +51,5 @@ export class Guard {
       reject(error);
     }
   }
+
 }

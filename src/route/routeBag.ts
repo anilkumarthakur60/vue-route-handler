@@ -1,6 +1,4 @@
-interface Route {
-  compile: () => any
-}
+import { Route } from "./route"
 
 export class RouteBag {
   public routes: Route[]
@@ -14,6 +12,6 @@ export class RouteBag {
   }
 
   compiled() {
-    return this.routes.map(route => route.compile())
+    return this.routes.map(route => route.compile(true))
   }
 }

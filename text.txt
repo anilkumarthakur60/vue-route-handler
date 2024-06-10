@@ -1,0 +1,100 @@
+export class Compiler {
+  route: RouteInterface;
+  current: any;
+
+  constructor(route: RouteInterface) {
+    this.route = route;
+  }
+
+  compile(nested = false): Compiled {
+    const children = this.route._children;
+    const hasChildren = children.length > 0;
+
+    const compiled: Compiled = {
+      components: {},
+      path: this.compilePath(nested),
+      redirect: this.route._redirect,
+      children: children.map(child => child.compile(true)),
+      name: hasChildren ? undefined : this.compileName(),
+      alias: hasChildren ? undefined : this.route._alias,
+      meta: hasChildren ? undefined : this.route._meta,
+      props: hasChildren ? undefined : this.route._props,
+    };
+
+    this.addComponents(compiled);
+
+    if (this.route._guards.size > 0) {
+      this.addBeforeEnterGuard(compiled);
+    }
+
+    return this.filterCompiledObject(compiled);
+  }
+
+  private addComponents(compiled: Compiled): void {
+    for (const [name, component] of Object.entries(this.route._components)) {
+      compiled.components[name] = component;
+    }
+  }
+
+  private compilePath(nested: boolean): string {
+    const cleanedPath = trim([this.route._prefixClamp, this.route._path].join('/')) || '';
+    return nested ? cleanedPath : `/${cleanedPath}`;
+  }
+
+  private compileName(): string | undefined {
+    const separator = Factory.nameSeparator;
+    const compiledName = [this.route._nameClamp, this.route._name].join(separator);
+    return trim(compiledName, separator);
+  }
+
+  private addBeforeEnterGuard(compiled: any): void {
+    compiled.beforeEnter = (to: any, from: any, next: any) => {
+      Array.from(this.route._guards)
+        .reduce(this.guardChain({ from, to }), Promise.resolve())
+        .then(this.guardResolver({ from, to }, next))
+        .catch(this.guardRejector({ from, to }, next));
+    };
+  }
+
+  private guardChain(context: CompilerContext) {
+    return (chain: Promise<void>, current: any): Promise<void> => {
+      this.current = current;
+      return chain.then(() => current.promise({ from: context.from, to: context.to }));
+    };
+  }
+
+  private guardResolver(context: CompilerContext, next: Function): Function {
+    return (): void => {
+      this.current.logResolution(context);
+      next();
+    };
+  }
+
+  private guardRejector(context: CompilerContext, next: Function): Function {
+    return (rejection: any): void => {
+      this.current.logRejection(context, rejection);
+
+      if (context.to.name === rejection.name || context.to.path === rejection.path) {
+        throw guardError('Rejection loop detected.');
+      }
+
+      const rejectionMessage = rejection === undefined
+        ? guardError('Rejection handler missing.')
+        : this.compileRejectionMessage(rejection);
+
+      next(rejectionMessage);
+    };
+  }
+
+  private compileRejectionMessage(rejection: string | (() => string)): string {
+    return rejection instanceof Function ? rejection() : rejection;
+  }
+
+  private filterCompiledObject(compiled: Compiled): Compiled {
+    return filterObject(compiled, item =>
+      !(item instanceof Function) &&
+      item !== undefined &&
+      !(item instanceof Object && !Object.keys(item).length)
+    );
+  }
+}
